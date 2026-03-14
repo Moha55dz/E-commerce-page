@@ -93,7 +93,7 @@ function attachAddToCartListeners() {
 }
 
 function addToCart(productId) {
-    let cart = JSON.parse(localStorage.getItem('cloth_cart')) || [];
+    let cart = JSON.parse(localStorage.getItem('vanta_cart')) || [];
     const product = products.find(p => p.id === productId);
     
     const existingItem = cart.find(item => item.id === productId);

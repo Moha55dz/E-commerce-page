@@ -1,5 +1,5 @@
 function displayCart() {
-    let cart = JSON.parse(localStorage.getItem('cloth_cart')) || [];
+    let cart = JSON.parse(localStorage.getItem('vanta_cart')) || [];
     const cartItemsContainer = document.getElementById('cart-items');
     const subtotalEl = document.getElementById('subtotal');
     const totalEl = document.getElementById('total-price');
@@ -27,21 +27,21 @@ function displayCart() {
             <tbody>
                 ${cart.map(item => `
                     <tr>
-                        <td>
+                        <td data-label="Product">
                             <div class="cart-product">
                                 <img src="${item.image}" alt="${item.name}">
                                 <span>${item.name}</span>
                             </div>
                         </td>
-                        <td>$${item.price.toFixed(2)}</td>
-                        <td>
+                        <td data-label="Price">$${item.price.toFixed(2)}</td>
+                        <td data-label="Quantity">
                             <div class="quantity-controls">
                                 <button onclick="updateQuantity(${item.id}, -1)">-</button>
                                 <span>${item.quantity}</span>
                                 <button onclick="updateQuantity(${item.id}, 1)">+</button>
                             </div>
                         </td>
-                        <td>$${(item.price * item.quantity).toFixed(2)}</td>
+                        <td data-label="Total">$${(item.price * item.quantity).toFixed(2)}</td>
                         <td><button class="remove-btn" onclick="removeItem(${item.id})"><i class="fas fa-trash"></i></button></td>
                     </tr>
                 `).join('')}
@@ -133,9 +133,10 @@ const extraStyles = `
     @media (max-width: 768px) {
         .cart-container, .product-detail-flex { grid-template-columns: 1fr; }
         .cart-table thead { display: none; }
-        .cart-table tr { display: block; border-bottom: 2px solid #eee; padding-bottom: 15px; }
-        .cart-table td { display: flex; justify-content: space-between; align-items: center; border: none; padding: 10px 0; }
-        .cart-table td::before { content: attr(data-label); font-weight: 700; }
+        .cart-table tr { display: block; border-bottom: 2px solid #eee; padding-bottom: 15px; margin-bottom: 15px; }
+        .cart-table td { display: flex; justify-content: space-between; align-items: center; border: none; padding: 10px 0; text-align: right; }
+        .cart-table td::before { content: attr(data-label); font-weight: 700; text-align: left; margin-right: 10px; }
+        .cart-product img { width: 60px; height: 60px; }
     }
 `;
 
@@ -148,4 +149,5 @@ document.addEventListener('DOMContentLoaded', () => {
     displayCart();
     initProductDetail();
     updateCartCount();
+    window.updateCartCount = updateCartCount;
 });

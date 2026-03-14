@@ -82,6 +82,14 @@
             color: #2ecc71;
             margin-bottom: 20px;
         }
+        @media (max-width: 768px) {
+            .checkout-container {
+                grid-template-columns: 1fr;
+            }
+            .form-row {
+                grid-template-columns: 1fr;
+            }
+        }
     </style>
 </head>
 <body>
@@ -100,6 +108,9 @@
                     </a>
                 </li>
             </ul>
+            <div class="mobile-menu-btn">
+                <i class="fas fa-bars"></i>
+            </div>
         </nav>
     </header>
 
@@ -174,5 +185,6 @@
 
     <script src="js/products.js"></script>
     <script src="js/checkout.js"></script>
+    <script src="js/filter.js"></script>
 </body>
 </html>

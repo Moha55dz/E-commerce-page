@@ -1,4 +1,4 @@
-const STORAGE_KEY = 'cloth_cart';
+const STORAGE_KEY = 'vanta_cart';
 
 document.addEventListener('DOMContentLoaded', () => {
     displayCheckoutSummary();
